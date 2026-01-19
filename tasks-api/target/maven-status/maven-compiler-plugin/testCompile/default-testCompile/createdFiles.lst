@@ -1,0 +1,7 @@
+com/docencia/tasks/DataObjectsCoverageTest.class
+com/docencia/tasks/infrastructure/security/JwtAuthenticationFilterTest.class
+com/docencia/tasks/adapters/in/controller/TaskControllerTest.class
+com/docencia/tasks/adapters/in/controller/business/TaskServiceTest.class
+com/docencia/tasks/adapters/in/controller/AuthControllerTest.class
+com/docencia/tasks/adapters/out/persistence/TaskPersistenceAdapterTest.class
+com/docencia/tasks/infrastructure/security/JwtServiceTest.class

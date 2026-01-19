@@ -1,0 +1,13 @@
+GROUP,PACKAGE,CLASS,INSTRUCTION_MISSED,INSTRUCTION_COVERED,BRANCH_MISSED,BRANCH_COVERED,LINE_MISSED,LINE_COVERED,COMPLEXITY_MISSED,COMPLEXITY_COVERED,METHOD_MISSED,METHOD_COVERED
+tasks-backend,com.docencia.tasks.adapters.in.api,TokenResponse,0,6,0,0,0,1,0,1,0,1
+tasks-backend,com.docencia.tasks.adapters.in.api,TaskResponse,2,123,1,13,1,30,1,19,0,13
+tasks-backend,com.docencia.tasks.adapters.in.api,LoginRequest,0,9,0,0,0,1,0,1,0,1
+tasks-backend,com.docencia.tasks.adapters.in.api,TaskRequest,0,24,0,0,0,11,0,7,0,7
+tasks-backend,com.docencia.tasks.adapters.in.controller,AuthController,0,42,0,0,0,11,0,2,0,2
+tasks-backend,com.docencia.tasks.adapters.in.controller,TaskController,0,110,0,2,0,21,0,9,0,8
+tasks-backend,com.docencia.tasks.adapters.out.persistence,TaskPersistenceAdapter,0,58,0,0,0,11,0,6,0,6
+tasks-backend,com.docencia.tasks.adapters.out.persistence,TaskJpaEntity,0,46,0,0,0,15,0,10,0,10
+tasks-backend,com.docencia.tasks.infrastructure.security,JwtService,0,88,1,3,0,20,1,10,0,9
+tasks-backend,com.docencia.tasks.infrastructure.security,JwtAuthenticationFilter,6,73,3,7,3,20,3,4,0,2
+tasks-backend,com.docencia.tasks.business,TaskService,4,64,2,4,1,17,2,8,0,7
+tasks-backend,com.docencia.tasks.domain.model,Task,0,46,0,0,0,15,0,10,0,10

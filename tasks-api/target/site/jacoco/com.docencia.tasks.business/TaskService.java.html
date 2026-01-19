@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="es"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>TaskService.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">tasks-backend</a> &gt; <a href="index.source.html" class="el_package">com.docencia.tasks.business</a> &gt; <span class="el_source">TaskService.java</span></div><h1>TaskService.java</h1><pre class="source lang-java linenums">package com.docencia.tasks.business;
+
+import org.springframework.stereotype.Service;
+
+import com.docencia.tasks.adapters.out.persistence.ITaskPersistenceAdapter;
+import com.docencia.tasks.domain.model.Task;
+
+import java.util.List;
+import java.util.Optional;
+
+/**
+ * Servicio de negocio para la gestión de tareas.
+ */
+@Service
+public class TaskService implements ITaskService {
+
+  private final ITaskPersistenceAdapter repo;
+
+<span class="fc" id="L19">  public TaskService(ITaskPersistenceAdapter repo) {</span>
+<span class="fc" id="L20">    this.repo = repo;</span>
+<span class="fc" id="L21">  }</span>
+
+  /**
+   * Crea una nueva tarea.
+   *
+   * @param task Tarea a crear.
+   * @return Tarea creada con su ID asignado.
+   */
+  public Task create(Task task) {
+<span class="fc" id="L30">    task.setId(null);</span>
+<span class="fc" id="L31">    return repo.save(task);</span>
+  }
+
+  /**
+   * Obtiene todas las tareas.
+   *
+   * @return Lista de tareas.
+   */
+  public List&lt;Task&gt; getAll() {
+<span class="fc" id="L40">    return repo.findAll();</span>
+  }
+
+  /**
+   * Obtiene una tarea por su ID.
+   *
+   * @param id ID de la tarea.
+   * @return Tarea encontrada o vacío.
+   */
+  public Optional&lt;Task&gt; getById(Long id) {
+<span class="fc" id="L50">    return repo.findById(id);</span>
+  }
+
+  /**
+   * Actualiza parcialmente una tarea.
+   *
+   * @param id    ID de la tarea.
+   * @param patch Datos a actualizar.
+   * @return Tarea actualizada o vacío si no existe.
+   */
+  public Optional&lt;Task&gt; update(Long id, Task patch) {
+<span class="fc" id="L61">    return repo.findById(id).map(existing -&gt; {</span>
+<span class="pc bpc" id="L62" title="1 of 2 branches missed.">      if (patch.getTitle() != null)</span>
+<span class="fc" id="L63">        existing.setTitle(patch.getTitle());</span>
+<span class="pc bpc" id="L64" title="1 of 2 branches missed.">      if (patch.getDescription() != null)</span>
+<span class="nc" id="L65">        existing.setDescription(patch.getDescription());</span>
+<span class="fc" id="L66">      existing.setCompleted(patch.isCompleted());</span>
+<span class="fc" id="L67">      return repo.save(existing);</span>
+    });
+  }
+
+  /**
+   * Elimina una tarea.
+   *
+   * @param id ID de la tarea.
+   * @return true si fue eliminada, false si no existía.
+   */
+  public boolean delete(Long id) {
+<span class="fc bfc" id="L78" title="All 2 branches covered.">    if (!repo.existsById(id))</span>
+<span class="fc" id="L79">      return false;</span>
+<span class="fc" id="L80">    repo.deleteById(id);</span>
+<span class="fc" id="L81">    return true;</span>
+  }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.12.202403310830</span></div></body></html>

@@ -1,0 +1,21 @@
+[core]
+	repositoryformatversion = 0
+	filemode = true
+	bare = false
+	logallrefupdates = true
+	ignorecase = true
+	precomposeunicode = true
+[submodule]
+	active = .
+[remote "origin"]
+	url = https://github.com/jpexposito/tasks-api.git
+	fetch = +refs/heads/*:refs/remotes/origin/*
+[branch "build-rest"]
+	remote = origin
+	merge = refs/heads/build-rest
+[lfs]
+	repositoryformatversion = 0
+[branch "hexagonal"]
+	remote = origin
+	merge = refs/heads/hexagonal
+	vscode-merge-base = origin/hexagonal

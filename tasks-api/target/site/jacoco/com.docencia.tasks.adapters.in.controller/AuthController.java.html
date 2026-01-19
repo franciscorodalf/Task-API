@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="es"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>AuthController.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">tasks-backend</a> &gt; <a href="index.source.html" class="el_package">com.docencia.tasks.adapters.in.controller</a> &gt; <span class="el_source">AuthController.java</span></div><h1>AuthController.java</h1><pre class="source lang-java linenums">package com.docencia.tasks.adapters.in.controller;
+
+import com.docencia.tasks.adapters.in.api.LoginRequest;
+import com.docencia.tasks.adapters.in.api.TokenResponse;
+import com.docencia.tasks.infrastructure.security.JwtService;
+import org.springframework.http.HttpStatus;
+import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.server.ResponseStatusException;
+
+/**
+ * Controlador para la autenticación de usuarios.
+ */
+@RestController
+@RequestMapping(&quot;/api/auth&quot;)
+public class AuthController {
+
+    private final AuthenticationManager gestorAutenticacion;
+    private final JwtService servicioJwt;
+
+<span class="fc" id="L24">    public AuthController(AuthenticationManager gestorAutenticacion, JwtService servicioJwt) {</span>
+<span class="fc" id="L25">        this.gestorAutenticacion = gestorAutenticacion;</span>
+<span class="fc" id="L26">        this.servicioJwt = servicioJwt;</span>
+<span class="fc" id="L27">    }</span>
+
+    /**
+     * Endpoint para iniciar sesión y obtener un token JWT.
+     * 
+     * @param solicitud Credenciales de acceso.
+     * @return Token JWT.
+     */
+    @PostMapping(&quot;/login&quot;)
+    public TokenResponse login(@RequestBody LoginRequest solicitud) {
+        try {
+<span class="fc" id="L38">            Authentication auth = gestorAutenticacion.authenticate(</span>
+<span class="fc" id="L39">                    new UsernamePasswordAuthenticationToken(solicitud.username(), solicitud.password()));</span>
+
+<span class="fc" id="L41">            UserDetails usuario = (UserDetails) auth.getPrincipal();</span>
+<span class="fc" id="L42">            String token = servicioJwt.generarToken(usuario);</span>
+<span class="fc" id="L43">            return new TokenResponse(token);</span>
+<span class="fc" id="L44">        } catch (Exception e) {</span>
+<span class="fc" id="L45">            throw new ResponseStatusException(HttpStatus.UNAUTHORIZED, &quot;Credenciales inválidas&quot;, e);</span>
+        }
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.12.202403310830</span></div></body></html>

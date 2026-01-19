@@ -1,0 +1,7 @@
+/Users/fran/Documents/GitHub/Task-API/tasks-api/src/test/java/com/docencia/tasks/DataObjectsCoverageTest.java
+/Users/fran/Documents/GitHub/Task-API/tasks-api/src/test/java/com/docencia/tasks/adapters/in/controller/AuthControllerTest.java
+/Users/fran/Documents/GitHub/Task-API/tasks-api/src/test/java/com/docencia/tasks/adapters/in/controller/TaskControllerTest.java
+/Users/fran/Documents/GitHub/Task-API/tasks-api/src/test/java/com/docencia/tasks/adapters/in/controller/business/TaskServiceTest.java
+/Users/fran/Documents/GitHub/Task-API/tasks-api/src/test/java/com/docencia/tasks/adapters/out/persistence/TaskPersistenceAdapterTest.java
+/Users/fran/Documents/GitHub/Task-API/tasks-api/src/test/java/com/docencia/tasks/infrastructure/security/JwtAuthenticationFilterTest.java
+/Users/fran/Documents/GitHub/Task-API/tasks-api/src/test/java/com/docencia/tasks/infrastructure/security/JwtServiceTest.java
